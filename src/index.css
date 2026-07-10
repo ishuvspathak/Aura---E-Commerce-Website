@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased select-none;
+  }
+}
+
+/* Custom Scrollbar for premium minimalist feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Glassmorphism Styles */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.dark .glass-effect {
+  background: rgba(17, 24, 39, 0.65);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Shimmer Loader Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.dark .animate-shimmer {
+  background: linear-gradient(90deg, #1f2937 25%, #374151 50%, #1f2937 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Custom transitions and interactive helpers */
+.transition-premium {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-lift {
+  @apply transition-premium;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  @apply shadow-premium-hover;
+}
+
+/* Hide default input spinners */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Image zoom styling */
+.image-zoom-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.image-zoom-container img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.image-zoom-container:hover img {
+  transform: scale(1.08);
+}
+
+/* Swiper custom overrides */
+.swiper-button-next, .swiper-button-prev {
+  color: #111827 !important;
+}
+.dark .swiper-button-next, .dark .swiper-button-prev {
+  color: #ffffff !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #2563eb !important;
+  width: 24px !important;
+  border-radius: 4px !important;
+  transition: width 0.3s ease;
+}
