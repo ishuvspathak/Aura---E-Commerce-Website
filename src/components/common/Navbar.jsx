@@ -55,13 +55,18 @@ const Navbar = ({ onSearchClick, onCartToggle }) => {
               <Link
                 key={link.label}
                 to={link.path}
-                className={`text-sm font-medium tracking-wide transition-colors duration-200 ${
+                className={`text-sm font-medium tracking-wide transition-colors duration-200 relative flex items-center ${
                   isActive(link.path)
                     ? 'text-accent dark:text-accent-light'
-                    : 'text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary-dark'
+                    : 'text-gray-650 dark:text-gray-300 hover:text-primary dark:hover:text-primary-dark'
                 }`}
               >
-                {link.label}
+                <span>{link.label}</span>
+                {link.label === 'Compare' && (
+                  <span className="ml-1.5 px-1.5 py-0.5 text-[8px] font-extrabold bg-danger text-white rounded-full uppercase tracking-wider leading-none">
+                    Hot
+                  </span>
+                )}
               </Link>
             ))}
           </nav>
