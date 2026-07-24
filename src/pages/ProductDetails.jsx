@@ -57,6 +57,28 @@ const ProductDetails = () => {
     }
   }, [product]);
 
+  const favorited = product ? isInWishlist(product.id) : false;
+  const compared = product ? isInCompare(product.id) : false;
+
+  // Frequently Bought Together (Bundle products)
+  const bundleProducts = useMemo(() => {
+    if (!product) return [];
+    return products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 2);
+  }, [product]);
+
+  // Similar Products
+  const similarProducts = useMemo(() => {
+    if (!product) return [];
+    return products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+  }, [product]);
+
+  // Recently Viewed Loader
+  const recentlyViewedProducts = useMemo(() => {
+    if (!product) return [];
+    const list = JSON.parse(localStorage.getItem('aura_recently_viewed') || '[]');
+    return products.filter(p => list.includes(p.id) && p.id !== product.id);
+  }, [product]);
+
   if (!product) {
     return (
       <div className="py-24 text-center space-y-4">
@@ -68,25 +90,6 @@ const ProductDetails = () => {
       </div>
     );
   }
-
-  const favorited = isInWishlist(product.id);
-  const compared = isInCompare(product.id);
-
-  // Frequently Bought Together (Bundle products)
-  const bundleProducts = useMemo(() => {
-    return products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 2);
-  }, [product]);
-
-  // Similar Products
-  const similarProducts = useMemo(() => {
-    return products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
-  }, [product]);
-
-  // Recently Viewed Loader
-  const recentlyViewedProducts = useMemo(() => {
-    const list = JSON.parse(localStorage.getItem('aura_recently_viewed') || '[]');
-    return products.filter(p => list.includes(p.id) && p.id !== product.id);
-  }, [product]);
 
   const handleAddToCart = () => {
     if (product.stock === 0) {

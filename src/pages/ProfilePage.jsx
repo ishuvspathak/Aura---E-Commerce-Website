@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { FiUser, FiMapPin, FiCreditCard, FiShoppingBag, FiActivity, FiTrash2, FiPlus, FiSettings } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
